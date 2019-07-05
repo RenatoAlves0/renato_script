@@ -1,2 +1,14 @@
-(7 + 2) * (2 - 2) + \/ (8 + 1)
+INICIO
+var aoo
+aoo = 3
+saida (aoo)
+var a
+var b
+a = 2
+b = 3
+saida (a)
+saida (123)
+var c
+c = a + b
+saida (c)
 FIM
