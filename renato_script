@@ -1,14 +1,18 @@
 INICIO
-var aoo
-aoo = 3
-saida (aoo)
-var a
+
+saidal ()
+saidal ('Declaração de uma variável (tipo 1)')
+saidal ('var a = 3')
+var a = 3
+saida ('Valor da variável: ')
+saidal (a)
+
+saidal ('Declaração de uma variável (tipo 2)')
+saidal ('var b')
+saidal ('b = 5')
 var b
-a = 2
-b = 3
-saida (a)
-saida (123)
-var c
-c = a + b
-saida (c)
+b = 5
+saida ('Valor da variável: ')
+saidal (b)
+
 FIM

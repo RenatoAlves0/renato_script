@@ -37,11 +37,12 @@ void yyerror (char *s) {
 %}
 %union {
     float decimal;
-    char str[50];
+    char caracteres[100];
 }
 
 %token <decimal> DECIMAL
-%token <str> NOMEVARIAVEL
+%token <caracteres> NOMEVARIAVEL
+%token <caracteres> CARACTERES
 %token INICIO
 %token FIM
 %token VAR
@@ -53,6 +54,7 @@ void yyerror (char *s) {
 %token MULTIPLICACAO
 %token PARENTESEABERTO
 %token PARENTESEFECHADO
+%token SAIDAL
 %token SAIDA
 %token ENTRADA
 %left ADICAO SUBTRACAO
@@ -64,38 +66,61 @@ void yyerror (char *s) {
 %%
 
 programa: INICIO codigo FIM;
-codigo: codigo cmdos |;
+codigo: codigo comandos |;
 
-cmdos: SAIDA PARENTESEABERTO exp PARENTESEFECHADO { printf ("%.2f \n",$3); }
+comandos: SAIDA PARENTESEABERTO exp PARENTESEFECHADO { 
+        printf ("%.2f\n",$3); 
+    }
+    | SAIDAL PARENTESEABERTO exp PARENTESEFECHADO { 
+        printf ("%.2f\n\n",$3); 
+    }
+    | SAIDA PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        printf ("%s",$3); 
+    }
+    | SAIDAL PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        printf ("%s\n",$3); 
+    }
+    | SAIDAL PARENTESEABERTO PARENTESEFECHADO {
+        printf ("\n");
+    }
     | VAR NOMEVARIAVEL {
         Str *aux = buscaStr(lista, $2);
        if(aux == NULL){
            lista = insereLista(lista, $2);   
        } else {
-           printf("Variável já declarada!");
+           printf("Variável '%s' já declarada!\n", $2);
        }
     }
-
     | NOMEVARIAVEL ATRIBUICAO exp {
        Str *aux = buscaStr(lista, $1); 
        if(aux == NULL){
-           printf("Variavel não declarada!");
+           printf("Variavel '%s' não declarada!\n", $1);
        } else {
             aux->v = $3;
        }
     }
-
+    | VAR NOMEVARIAVEL ATRIBUICAO exp {
+        Str *aux = buscaStr(lista, $2);
+       if(aux == NULL){
+           lista = insereLista(lista, $2);
+           Str *aux2 = buscaStr(lista, $2); 
+           aux2->v = $4;
+       } else {
+           printf("Variável '%s' já declarada!\n", $2);
+       }
+    }
     | ENTRADA PARENTESEABERTO NOMEVARIAVEL PARENTESEFECHADO {
         Str *busca = buscaStr(lista, $3); 
         if(busca == NULL){
-           printf("Variável não declarada!");
+           printf("Variável não declarada!\n");
         } else {
            scanf("%f", &busca->v);
         }
-
     };
 
-exp: exp ELEVACAO exp {$$ = pow($1,$3);}
+exp: exp ELEVACAO exp {
+        $$ = pow($1,$3);
+    }
     |RAIZ exp {$$ = sqrt($2);}
     |exp MULTIPLICACAO exp {$$ = $1 * $3;}
     |exp DIVISAO exp {$$ = $1 / $3;}
@@ -106,8 +131,11 @@ exp: exp ELEVACAO exp {$$ = pow($1,$3);}
     |valor {$$ = $1;}
     |NOMEVARIAVEL {
         Str *aux = buscaStr(lista, $1);
-        if(aux == NULL){printf("Variável não existe!");}
-        $$ = aux->v;
+        if(aux == NULL) {
+            printf("Variável não existe!");
+            $$ = 0;
+        }
+        else $$ = aux->v;
         };
 
 valor: DECIMAL {$$ = $1;};

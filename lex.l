@@ -39,6 +39,7 @@ RAIZ "\\/"
 /*PALAVRAS RESERVADAS*/
 ENTRADA entrada
 SAIDA saida
+SAIDAL saidal
 SENAO senao
 SE se
 PARA para
@@ -48,6 +49,9 @@ CASO caso
 FIM FIM
 INICIO INICIO
 PONTO \.
+VIRGULA \,
+ASPA \'
+ASPAS \"
 ESPACO " "
 QUEBRALINHA \n
 TABULACAO \t
@@ -65,17 +69,22 @@ QUALQUERCOISA .*
 /*RESTODI {DECIMAL}{ESPACO}{RESTO}{ESPACO}{INTEIRO}*/
 DESCARTAR ({ESPACO}|{TABULACAO}|{QUEBRALINHA})
 %%
+{CARACTERES} {
+    strcpy(yylval.caracteres, yytext);
+    return CARACTERES;
+}
 {INICIO} {return INICIO;}
 {DECIMAL} {
     yylval.decimal = atof(yytext);
     return DECIMAL;
 }
 {ENTRADA} {return ENTRADA;}
+{SAIDAL} {return SAIDAL;}
 {SAIDA} {return SAIDA;}
 {FIM} {return FIM;}
 {VAR} {return VAR;}
 {NOMEVARIAVEL} {
-    strcpy(yylval.str, yytext);
+    strcpy(yylval.caracteres, yytext);
     return NOMEVARIAVEL;
 }
 {ATRIBUICAO} {return ATRIBUICAO;}
