@@ -88,13 +88,17 @@ comandos: SAIDA PARENTESEABERTO exp PARENTESEFECHADO {
        if(aux == NULL){
            lista = insereLista(lista, $2);   
        } else {
+           printf("\033[1;33m");
            printf("Variável '%s' já declarada!\n", $2);
+           printf("\033[0m");
        }
     }
     | NOMEVARIAVEL ATRIBUICAO exp {
        Str *aux = buscaStr(lista, $1); 
        if(aux == NULL){
+           printf("\033[1;33m");
            printf("Variavel '%s' não declarada!\n", $1);
+           printf("\033[0m");
        } else {
             aux->v = $3;
        }
@@ -106,17 +110,11 @@ comandos: SAIDA PARENTESEABERTO exp PARENTESEFECHADO {
            Str *aux2 = buscaStr(lista, $2); 
            aux2->v = $4;
        } else {
+           printf("\033[1;33m");
            printf("Variável '%s' já declarada!\n", $2);
+           printf("\033[0m");
        }
     }
-    | ENTRADA PARENTESEABERTO NOMEVARIAVEL PARENTESEFECHADO {
-        Str *busca = buscaStr(lista, $3); 
-        if(busca == NULL){
-           printf("Variável não declarada!\n");
-        } else {
-           scanf("%f", &busca->v);
-        }
-    };
 
 exp: exp ELEVACAO exp {
         $$ = pow($1,$3);
@@ -132,8 +130,10 @@ exp: exp ELEVACAO exp {
     |NOMEVARIAVEL {
         Str *aux = buscaStr(lista, $1);
         if(aux == NULL) {
-            printf("Variável não existe!");
+            printf("\033[1;33m");
+            printf("Variavel '%s' não declarada!\n", $1);
             $$ = 0;
+            printf("\033[0m");
         }
         else $$ = aux->v;
         };
@@ -142,7 +142,7 @@ valor: DECIMAL {$$ = $1;};
 %%
 #include "lex.yy.c"
 int main() {
-    yyin=fopen("renato_script","r");
+    yyin=fopen("renato_script.txt","r");
     yyparse();
     yylex();
     fclose(yyin);

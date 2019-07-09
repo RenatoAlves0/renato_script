@@ -1,0 +1,38 @@
+INICIO
+
+saidal ()
+saidal ('Declaração de uma variável (tipo 1) e atribuição de valor')
+saidal ('var a = 3')
+var a = 3
+saida ('Valor da variável: ')
+saidal (a)
+
+saidal ('Declaração de uma variável (tipo 2)  e atribuição de valor')
+saidal ('var b')
+saidal ('b = 5')
+var b
+b = 5
+saida ('Valor da variável: ')
+saidal (b)
+
+saidal ('Tentando declarar uma variável já declarada')
+saidal ('var b')
+var b
+saidal ()
+
+saidal ('Tentando atribuir valor a uma variável não declarada')
+saidal ('c = 2')
+c = 2
+saidal ()
+
+saidal ('Tentando printar valor de uma variável não declarada')
+saidal ('saidal (c)')
+saidal (c)
+
+saidal ('Declaração de uma variável (tipo 1) com mais de 1 caractere')
+saidal ('var abc = 4')
+var abc = 4
+saida ('Valor da variável: ')
+saidal (abc)
+
+FIM
