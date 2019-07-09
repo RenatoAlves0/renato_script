@@ -3,7 +3,7 @@ INICIO
 saidal ()
 saidal ('Declaração de uma variável (tipo 1) e atribuição de valor')
 saidal ('var a = 3')
-var a = 3
+var a = 4
 saida ('Valor da variável: ')
 saidal (a)
 
@@ -34,5 +34,50 @@ saidal ('var abc = 4')
 var abc = 4
 saida ('Valor da variável: ')
 saidal (abc)
+
+saida ('a: ')
+saida (a)
+
+saida ('b: ')
+saidal (b)
+
+saidal ('a+b')
+saidal (a+b)
+
+saidal ('a-b')
+saidal (a-b)
+
+saidal ('a*b')
+saidal (a*b)
+
+saidal ('a/b')
+saidal (a/b)
+
+saidal ('exponencia -> a^b')
+saidal (a^b)
+
+saidal ('raiz -> \/b')
+saidal (\/b)
+
+saidal ('a+b/a : b/a -> a+result')
+saidal (a+b/a)
+
+saidal ('a-b*a : b*a -> a-result')
+saidal (a-b*a)
+
+saidal ('a*b+\/a : \/a -> (a*b)+result')
+saidal (a*b+\/a)
+
+saidal ('a/b+a^2 : a^2 -> (a/b)+result')
+saidal (a/b+a^2)
+
+saidal ('(a/b)+(a^2) : a^2 -> (a/b)+result')
+saidal ((a/b)+(a^2))
+
+saidal ('((a/b)+(a^2))-1 : a^2 -> (a/b)+result -> result-1')
+saidal (((a/b)+(a^2))-1)
+
+saidal ('((a*b)+(\/5))^2 : a*b -> result+(\/5) -> result^2')
+saidal (((a*b)+(\/5))^2)
 
 FIM

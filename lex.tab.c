@@ -481,9 +481,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    68,    68,    69,    69,    71,    74,    77,    80,    83,
-      86,    96,   106,   119,   122,   123,   124,   125,   126,   127,
-     128,   129,   130,   141
+       0,    68,    68,    69,    69,    71,    76,    81,    84,    87,
+      90,   100,   110,   123,   126,   127,   128,   129,   130,   131,
+     132,   133,   134,   145
 };
 #endif
 
@@ -540,7 +540,7 @@ static const yytype_uint8 yydefact[] =
        0,     4,     0,     0,     1,     0,     2,     0,     0,     0,
        3,     0,    10,     0,     0,    23,    22,     0,     0,     0,
       11,    21,     0,     0,     9,     0,     0,     0,    14,     0,
-      20,     0,     0,     0,     0,     0,    12,     8,     6,     7,
+      20,     0,     0,     0,     0,     0,    12,     7,     6,     8,
        5,    19,    13,    16,    15,    17,    18
 };
 
@@ -1288,45 +1288,49 @@ yyreduce:
         case 5:
 #line 71 "lex.y" /* yacc.c:1646  */
     { 
-        printf ("%.2f\n",(yyvsp[-1].decimal)); 
+        printf("\033[1;34");
+        printf ("%.2f\n",(yyvsp[-1].decimal));
+        printf("\033[0m");
     }
-#line 1294 "lex.tab.c" /* yacc.c:1646  */
+#line 1296 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 74 "lex.y" /* yacc.c:1646  */
+#line 76 "lex.y" /* yacc.c:1646  */
     { 
-        printf ("%.2f\n\n",(yyvsp[-1].decimal)); 
+        printf("\033[1;34m");
+        printf ("%.2f\n\n",(yyvsp[-1].decimal));
+        printf("\033[0m");
     }
-#line 1302 "lex.tab.c" /* yacc.c:1646  */
+#line 1306 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 77 "lex.y" /* yacc.c:1646  */
+#line 81 "lex.y" /* yacc.c:1646  */
     { 
-        printf ("%s",(yyvsp[-1].caracteres)); 
+        printf ("%s\n",(yyvsp[-1].caracteres));
     }
-#line 1310 "lex.tab.c" /* yacc.c:1646  */
+#line 1314 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 80 "lex.y" /* yacc.c:1646  */
+#line 84 "lex.y" /* yacc.c:1646  */
     { 
-        printf ("%s\n",(yyvsp[-1].caracteres)); 
+        printf ("%s",(yyvsp[-1].caracteres));
     }
-#line 1318 "lex.tab.c" /* yacc.c:1646  */
+#line 1322 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 83 "lex.y" /* yacc.c:1646  */
+#line 87 "lex.y" /* yacc.c:1646  */
     {
         printf ("\n");
     }
-#line 1326 "lex.tab.c" /* yacc.c:1646  */
+#line 1330 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 86 "lex.y" /* yacc.c:1646  */
+#line 90 "lex.y" /* yacc.c:1646  */
     {
         Str *aux = buscaStr(lista, (yyvsp[0].caracteres));
        if(aux == NULL){
@@ -1337,11 +1341,11 @@ yyreduce:
            printf("\033[0m");
        }
     }
-#line 1341 "lex.tab.c" /* yacc.c:1646  */
+#line 1345 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 96 "lex.y" /* yacc.c:1646  */
+#line 100 "lex.y" /* yacc.c:1646  */
     {
        Str *aux = buscaStr(lista, (yyvsp[-2].caracteres)); 
        if(aux == NULL){
@@ -1352,11 +1356,11 @@ yyreduce:
             aux->v = (yyvsp[0].decimal);
        }
     }
-#line 1356 "lex.tab.c" /* yacc.c:1646  */
+#line 1360 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 106 "lex.y" /* yacc.c:1646  */
+#line 110 "lex.y" /* yacc.c:1646  */
     {
         Str *aux = buscaStr(lista, (yyvsp[-2].caracteres));
        if(aux == NULL){
@@ -1369,67 +1373,67 @@ yyreduce:
            printf("\033[0m");
        }
     }
-#line 1373 "lex.tab.c" /* yacc.c:1646  */
+#line 1377 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 119 "lex.y" /* yacc.c:1646  */
+#line 123 "lex.y" /* yacc.c:1646  */
     {
         (yyval.decimal) = pow((yyvsp[-2].decimal),(yyvsp[0].decimal));
     }
-#line 1381 "lex.tab.c" /* yacc.c:1646  */
+#line 1385 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 122 "lex.y" /* yacc.c:1646  */
+#line 126 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = sqrt((yyvsp[0].decimal));}
-#line 1387 "lex.tab.c" /* yacc.c:1646  */
+#line 1391 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 123 "lex.y" /* yacc.c:1646  */
+#line 127 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = (yyvsp[-2].decimal) * (yyvsp[0].decimal);}
-#line 1393 "lex.tab.c" /* yacc.c:1646  */
+#line 1397 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 124 "lex.y" /* yacc.c:1646  */
+#line 128 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = (yyvsp[-2].decimal) / (yyvsp[0].decimal);}
-#line 1399 "lex.tab.c" /* yacc.c:1646  */
+#line 1403 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 125 "lex.y" /* yacc.c:1646  */
+#line 129 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = (yyvsp[-2].decimal) + (yyvsp[0].decimal);}
-#line 1405 "lex.tab.c" /* yacc.c:1646  */
+#line 1409 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
-#line 126 "lex.y" /* yacc.c:1646  */
+#line 130 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = (yyvsp[-2].decimal) - (yyvsp[0].decimal);}
-#line 1411 "lex.tab.c" /* yacc.c:1646  */
+#line 1415 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 127 "lex.y" /* yacc.c:1646  */
+#line 131 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = (yyvsp[-1].decimal);}
-#line 1417 "lex.tab.c" /* yacc.c:1646  */
+#line 1421 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 128 "lex.y" /* yacc.c:1646  */
+#line 132 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = -(yyvsp[0].decimal);}
-#line 1423 "lex.tab.c" /* yacc.c:1646  */
+#line 1427 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 129 "lex.y" /* yacc.c:1646  */
+#line 133 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = (yyvsp[0].decimal);}
-#line 1429 "lex.tab.c" /* yacc.c:1646  */
+#line 1433 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 130 "lex.y" /* yacc.c:1646  */
+#line 134 "lex.y" /* yacc.c:1646  */
     {
         Str *aux = buscaStr(lista, (yyvsp[0].caracteres));
         if(aux == NULL) {
@@ -1440,17 +1444,17 @@ yyreduce:
         }
         else (yyval.decimal) = aux->v;
         }
-#line 1444 "lex.tab.c" /* yacc.c:1646  */
+#line 1448 "lex.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 141 "lex.y" /* yacc.c:1646  */
+#line 145 "lex.y" /* yacc.c:1646  */
     {(yyval.decimal) = (yyvsp[0].decimal);}
-#line 1450 "lex.tab.c" /* yacc.c:1646  */
+#line 1454 "lex.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1454 "lex.tab.c" /* yacc.c:1646  */
+#line 1458 "lex.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1678,7 +1682,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 142 "lex.y" /* yacc.c:1906  */
+#line 146 "lex.y" /* yacc.c:1906  */
 
 #include "lex.yy.c"
 int main() {

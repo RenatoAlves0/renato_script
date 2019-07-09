@@ -69,16 +69,20 @@ programa: INICIO codigo FIM;
 codigo: codigo comandos |;
 
 comandos: SAIDA PARENTESEABERTO exp PARENTESEFECHADO { 
-        printf ("%.2f\n",$3); 
+        printf("\033[1;34");
+        printf ("%.2f\n",$3);
+        printf("\033[0m");
     }
     | SAIDAL PARENTESEABERTO exp PARENTESEFECHADO { 
-        printf ("%.2f\n\n",$3); 
-    }
-    | SAIDA PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
-        printf ("%s",$3); 
+        printf("\033[1;34m");
+        printf ("%.2f\n\n",$3);
+        printf("\033[0m");
     }
     | SAIDAL PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
-        printf ("%s\n",$3); 
+        printf ("%s\n",$3);
+    }
+    | SAIDA PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        printf ("%s",$3);
     }
     | SAIDAL PARENTESEABERTO PARENTESEFECHADO {
         printf ("\n");
