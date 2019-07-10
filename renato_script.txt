@@ -2,82 +2,139 @@ INICIO
 
 saidal ()
 saidal ('Declaração de uma variável (tipo 1) e atribuição de valor')
-saidal ('var a = 3')
+saidal_p ('var a = 4')
 var a = 4
 saida ('Valor da variável: ')
 saidal (a)
 
 saidal ('Declaração de uma variável (tipo 2)  e atribuição de valor')
-saidal ('var b')
-saidal ('b = 5')
+saidal_p ('var b')
+saidal_p ('b = 5')
 var b
 b = 5
 saida ('Valor da variável: ')
 saidal (b)
 
 saidal ('Tentando declarar uma variável já declarada')
-saidal ('var b')
+saidal_p ('var b')
 var b
 saidal ()
 
 saidal ('Tentando atribuir valor a uma variável não declarada')
-saidal ('c = 2')
+saidal_p ('c = 2')
 c = 2
 saidal ()
 
 saidal ('Tentando printar valor de uma variável não declarada')
-saidal ('saidal (c)')
+saidal_p ('saidal (c)')
 saidal (c)
 
 saidal ('Declaração de uma variável (tipo 1) com mais de 1 caractere')
-saidal ('var abc = 4')
+saidal_p ('var abc = 4')
 var abc = 4
 saida ('Valor da variável: ')
 saidal (abc)
 
-saida ('a: ')
-saida (a)
+saidal ('Declaração de uma variável (tipo 1) com mais de 1 caractere')
+saidal_p ('var abc123 = 70')
+var abc123 = 70
+saida ('Valor da variável: ')
+saidal (abc123)
 
-saida ('b: ')
+saidal ('Declaração de uma variável (tipo 1) recebendo a soma de duas outras variáveis')
+saidal_p ('var c = abc123 + abc')
+var c = abc123 + abc
+saida ('Valor da variável: ')
+saidal (c)
+
+saidal_p ('saidal (a)')
+saidal (a)
+
+saidal_p ('saidal (b)')
 saidal (b)
 
-saidal ('a+b')
+saidal_p ('saidal (a+b)')
 saidal (a+b)
 
-saidal ('a-b')
+saidal_p ('saidal (a-b)')
 saidal (a-b)
 
-saidal ('a*b')
+saidal_p ('saidal (a*b)')
 saidal (a*b)
 
-saidal ('a/b')
+saidal_p ('saidal (a/b)')
 saidal (a/b)
 
-saidal ('exponencia -> a^b')
+saidal ('Exponencia')
+saidal_p ('saidal (a^b)')
 saidal (a^b)
 
-saidal ('raiz -> \/b')
+saidal ('Raiz')
+saidal_p ('saidal (\/b)')
 saidal (\/b)
 
-saidal ('a+b/a : b/a -> a+result')
-saidal (a+b/a)
+saidal_p ('saida (a+b/a)')
+saida (a+b/a)
+saidal_v ('Processo de compilação: a+b/a : b/a -> a+result')
+saidal ()
 
-saidal ('a-b*a : b*a -> a-result')
-saidal (a-b*a)
+saidal_p ('saida (a-b*a)')
+saida (a-b*a)
+saidal_v ('Processo de compilação: a-b*a : b*a -> a-result')
+saidal ()
 
-saidal ('a*b+\/a : \/a -> (a*b)+result')
-saidal (a*b+\/a)
+saidal_p ('saida (a*b+\/a)')
+saida (a*b+\/a)
+saidal_v ('Processo de compilação: a*b+\/a : \/a -> (a*b)+result')
+saidal ()
 
-saidal ('a/b+a^2 : a^2 -> (a/b)+result')
-saidal (a/b+a^2)
+saidal_p ('saida (a/b+a^2)')
+saida (a/b+a^2)
+saidal_v ('Processo de compilação: a/b+a^2 : a^2 -> (a/b)+result')
+saidal ()
 
-saidal ('(a/b)+(a^2) : a^2 -> (a/b)+result')
-saidal ((a/b)+(a^2))
+saidal_p ('saida ((a/b)+(a^2))')
+saida ((a/b)+(a^2))
+saidal_v ('Processo de compilação: (a/b)+(a^2) : a/b -> result+(a^2)')
+saidal ()
 
-saidal ('((a/b)+(a^2))-1 : a^2 -> (a/b)+result -> result-1')
-saidal (((a/b)+(a^2))-1)
+saidal_p ('saida (((a/b)+(a^2))-1)')
+saida (((a/b)+(a^2))-1)
+saidal_v ('Processo de compilação: ((a/b)+(a^2))-1 : a/b -> result+(a^2) -> result-1')
+saidal ()
 
-saidal ('((a*b)+(\/5))^2 : a*b -> result+(\/5) -> result^2')
-saidal (((a*b)+(\/5))^2)
+saidal_p ('saida (((a*b)+(\/5))^2)')
+saida (((a*b)+(\/5))^2)
+saidal_v ('Processo de compilação: ((a*b)+(\/5))^2 : a*b -> result+(\/5) -> result^2')
+saidal ()
+
+saidal_p ('saida (5*2^2)')
+saida (5*2^2)
+saidal_v ('Processo de compilação: 5*2^2 : 2^2 -> 5*result')
+saidal ()
+
+saidal_p ('saida (5+2*3)')
+saida (5+2*3)
+saidal_v ('Processo de compilação: 5+2*3 : 2*3 -> 5+result')
+saidal ()
+
+saidal_p ('saida ((5+2)*3)')
+saida ((5+2)*3)
+saidal_v ('Processo de compilação: (5+2)*3 : (5+2) -> result*3')
+saidal ()
+
+saidal ('Lendo um valor do teclado e tentando atribuir a uma variável não declarada 'x'')
+saidal_p ('entrada (x)')
+entrada (x)
+saidal ()
+
+saidal ('Declarando uma nova variável')
+saidal_p ('var d')
+var d
+saidal ('Lendo um valor do teclado e atribuindo a 'd'')
+saidal_p ('entrada (d)')
+entrada (d)
+saida ('Valor da variável: ')
+saidal (d)
 
 FIM

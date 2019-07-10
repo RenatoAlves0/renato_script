@@ -39,7 +39,11 @@ RAIZ "\\/"
 /*PALAVRAS RESERVADAS*/
 ENTRADA entrada
 SAIDA saida
+SAIDA_V saida_v
+SAIDA_P saida_p
 SAIDAL saidal
+SAIDAL_V saidal_v
+SAIDAL_P saidal_p
 SENAO senao
 SE se
 PARA para
@@ -79,7 +83,11 @@ DESCARTAR ({ESPACO}|{TABULACAO}|{QUEBRALINHA})
     return DECIMAL;
 }
 {ENTRADA} {return ENTRADA;}
+{SAIDAL_V} {return SAIDAL_V;}
+{SAIDAL_P} {return SAIDAL_P;}
 {SAIDAL} {return SAIDAL;}
+{SAIDA_V} {return SAIDA_V;}
+{SAIDA_P} {return SAIDA_P;}
 {SAIDA} {return SAIDA;}
 {FIM} {return FIM;}
 {VAR} {return VAR;}
