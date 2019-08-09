@@ -49,6 +49,9 @@ void yyerror (char *s) {
 %type <decimal> expressoes
 %type <decimal> valor
 %token INICIO
+%token MENOR
+%token CHAVEABERTA
+%token CHAVEFECHADA
 %token SE
 %token SENAO
 %token FIM
@@ -185,13 +188,13 @@ comandos: SAIDAL PARENTESEABERTO expressoes PARENTESEFECHADO {
     }
     | SE PARENTESEABERTO teste PARENTESEFECHADO comandos %prec SEX			
 	| SE PARENTESEABERTO teste PARENTESEFECHADO comandosse SENAO comandos
-    | '{' cmdos_lst '}'	{
+    | CHAVEABERTA cmdos_lst CHAVEFECHADA	{
 							OK = 1;
 						}
 	;
 
 comandosse:
-	 '{' cmdos_lst '}' {
+	 CHAVEABERTA cmdos_lst CHAVEFECHADA {
 			if(OK==1) OK=0;
 			else OK=1;
 			}
@@ -224,7 +227,7 @@ expressoes: expressoes ELEVACAO expressoes {
         };
 
 valor: DECIMAL {$$ = $1;};
-teste: expressoes '<' expressoes {
+teste: expressoes MENOR expressoes {
                     printf("Teste");
 					if ($1 < $3) OK = 1;
 					else OK = 0;
