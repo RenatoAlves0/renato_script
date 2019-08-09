@@ -77,6 +77,9 @@ DESCARTAR ({ESPACO}|{TABULACAO}|{QUEBRALINHA})
     strcpy(yylval.caracteres, yytext);
     return CARACTERES;
 }
+[<{}] {return *yytext;}
+{SENAO} {return SENAO;}
+{SE} {return SE;}
 {INICIO} {return INICIO;}
 {DECIMAL} {
     yylval.decimal = atof(yytext);

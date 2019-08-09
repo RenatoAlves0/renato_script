@@ -30,6 +30,9 @@ Variaveis *inserir_nova_variavel( Variaveis *l, char nome[]){
     return nova;  
 }
 
+Variaveis*l1;
+int OK;
+
 int yylex();
 void yyerror (char *s) {
     printf("Erro: %s\n", s);
@@ -46,6 +49,8 @@ void yyerror (char *s) {
 %type <decimal> expressoes
 %type <decimal> valor
 %token INICIO
+%token SE
+%token SENAO
 %token FIM
 %token VAR
 %token ATRIBUICAO
@@ -62,6 +67,7 @@ void yyerror (char *s) {
 %left MULTIPLICACAO DIVISAO
 %right ELEVACAO RAIZ RESTO
 %right NEG
+%nonassoc SEX
 %%
 
 programa: INICIO codigo FIM;
@@ -177,6 +183,23 @@ comandos: SAIDAL PARENTESEABERTO expressoes PARENTESEFECHADO {
            printf("\033[0m");
        }
     }
+    | SE PARENTESEABERTO teste PARENTESEFECHADO comandos %prec SEX			
+	| SE PARENTESEABERTO teste PARENTESEFECHADO comandosse SENAO comandos
+    | '{' cmdos_lst '}'	{
+							OK = 1;
+						}
+	;
+
+comandosse:
+	 '{' cmdos_lst '}' {
+			if(OK==1) OK=0;
+			else OK=1;
+			}
+	;
+cmdos_lst:
+		comandos
+	|	cmdos_lst comandos
+	;
 
 expressoes: expressoes ELEVACAO expressoes {
         $$ = pow($1,$3);
@@ -201,9 +224,17 @@ expressoes: expressoes ELEVACAO expressoes {
         };
 
 valor: DECIMAL {$$ = $1;};
+teste: expressoes '<' expressoes {
+                    printf("Teste");
+					if ($1 < $3) OK = 1;
+					else OK = 0;
+					}
+	;
 %%
 #include "lex.yy.c"
 int main() {
+    OK = 1;
+    l1 = NULL;
     yyin=fopen("renato_script.txt","r");
     yyparse();
     yylex();

@@ -137,4 +137,17 @@ entrada (d)
 saida ('Valor da variável: ')
 saidal (d)
 
+var menor = 1
+var maior = 2
+
+saida ('Menor: ')
+saidal (menor)
+
+saida ('Maior: ')
+saidal (maior)
+
+se (menor < maior) {
+    saidal_v ('Verdade')
+}
+
 FIM
