@@ -521,7 +521,7 @@ static const char *const yytname[] =
   "SAIDA_P", "SAIDAL", "SAIDAL_V", "SAIDAL_P", "ENTRADA", "ADICAO",
   "SUBTRACAO", "MULTIPLICACAO", "DIVISAO", "ELEVACAO", "RAIZ", "RESTO",
   "NEG", "SEX", "$accept", "programa", "codigo", "comandos", "comandosse",
-  "lista_comandos", "expressoes", "valor", "teste", YY_NULLPTR
+  "lista_comandos", "expressoes", "valor", "operadores", YY_NULLPTR
 };
 #endif
 

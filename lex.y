@@ -225,8 +225,8 @@ comandos: SAIDAL PARENTESEABERTO expressoes PARENTESEFECHADO {
         }
         }
     }
-    | SE PARENTESEABERTO teste PARENTESEFECHADO comandos %prec SEX			
-	| SE PARENTESEABERTO teste PARENTESEFECHADO comandosse SENAO comandos
+    | SE PARENTESEABERTO operadores PARENTESEFECHADO comandos %prec SEX			
+	| SE PARENTESEABERTO operadores PARENTESEFECHADO comandosse SENAO comandos
     | CHAVEABERTA lista_comandos CHAVEFECHADA	{
 							OK = 1;
 						}
@@ -265,7 +265,7 @@ expressoes: expressoes ELEVACAO expressoes {
         };
 
 valor: DECIMAL {$$ = $1;};
-teste: expressoes MENOR expressoes {
+operadores: expressoes MENOR expressoes {
 					if ($1 < $3) OK = 1;
 					else OK = 0;
 					}
