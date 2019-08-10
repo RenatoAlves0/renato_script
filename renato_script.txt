@@ -146,8 +146,100 @@ saidal (menor)
 saida ('Maior: ')
 saidal (maior)
 
+saidal ()
+saidal ('<')
 se (menor < maior) {
-    saidal_v ('Verdade')
+    saidal_v ('menor < maior')
+} senao {
+    saidal_p ('!menor < maior')
+}
+
+se (maior < menor) {
+    saidal_v ('maior < menor')
+} senao {
+    saidal_p ('!maior < menor')
+}
+
+saidal ()
+saidal ('>')
+se (maior > menor) {
+    saidal_v ('maior > menor')
+} senao {
+    saidal_p ('!maior > menor')
+}
+
+se (menor > maior) {
+    saidal_v ('menor > maior')
+} senao {
+    saidal_p ('!menor > maior')
+}
+
+saidal ()
+saidal ('>=')
+se (1 >= 1) {
+    saidal_v ('1 >= 1')
+} senao {
+    saidal_p ('!1 >= 1')
+}
+
+se (2 >= 1) {
+    saidal_v ('2 >= 1')
+} senao {
+    saidal_p ('!2 >= 1')
+}
+
+se (1 >= 2) {
+    saidal_v ('1 >= 2')
+} senao {
+    saidal_p ('!1 >= 2')
+}
+
+saidal ()
+saidal ('<=')
+se (1 <= 1) {
+    saidal_v ('1 <= 1')
+} senao {
+    saidal_p ('!1 <= 1')
+}
+
+se (2 <= 1) {
+    saidal_v ('2 <= 1')
+} senao {
+    saidal_p ('!2 <= 1')
+}
+
+se (1 <= 2) {
+    saidal_v ('1 <= 2')
+} senao {
+    saidal_p ('!1 <= 2')
+}
+
+saidal ()
+saidal ('==')
+se (1 == 1) {
+    saidal_v ('1 == 1')
+} senao {
+    saidal_p ('!1 == 1')
+}
+
+se (2 == 1) {
+    saidal_v ('2 == 1')
+} senao {
+    saidal_p ('!2 == 1')
+}
+
+saidal ()
+saidal ('!=')
+se (1 != 1) {
+    saidal_v ('1 != 1')
+} senao {
+    saidal_p ('!1 != 1')
+}
+
+se (2 != 1) {
+    saidal_v ('2 != 1')
+} senao {
+    saidal_p ('!2 != 1')
 }
 
 FIM

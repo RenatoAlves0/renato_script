@@ -48,8 +48,13 @@ void yyerror (char *s) {
 %token <caracteres> CARACTERES
 %type <decimal> expressoes
 %type <decimal> valor
+%token IGUAL
+%token DIFERENTE
+%token MENORIGUAL
+%token MAIORIGUAL
 %token INICIO
 %token MENOR
+%token MAIOR
 %token CHAVEABERTA
 %token CHAVEFECHADA
 %token SE
@@ -77,66 +82,93 @@ programa: INICIO codigo FIM;
 codigo: codigo comandos |;
 
 comandos: SAIDAL PARENTESEABERTO expressoes PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;34m");
         printf ("%.2lf\n\n",$3);
         printf("\033[0m");
+        }
     }
     | SAIDA PARENTESEABERTO expressoes PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;34m");
         printf ("%.2lf\n",$3);
         printf("\033[0m");
+        }
     }
     | SAIDAL_V PARENTESEABERTO expressoes PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;32m");
         printf ("%.2lf\n\n",$3);
         printf("\033[0m");
+        }
     }
     | SAIDA_V PARENTESEABERTO expressoes PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;32m");
         printf ("%.2lf\n",$3);
         printf("\033[0m");
+        }
     }
     | SAIDAL_P PARENTESEABERTO expressoes PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;35m");
         printf ("%.2lf\n\n",$3);
         printf("\033[0m");
+        }
     }
     | SAIDA_P PARENTESEABERTO expressoes PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;35m");
         printf ("%.2lf\n",$3);
         printf("\033[0m");
+        }
     }
     | SAIDAL PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        if(OK == 1) {
         printf ("%s\n",$3);
+        }
     }
     | SAIDA PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        if(OK == 1) {
         printf ("%s",$3);
+        }
     }
     | SAIDAL_V PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;32m");
         printf ("%s\n",$3);
         printf("\033[0m");
+        }
     }
     | SAIDA_V PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;32m");
         printf ("%s",$3);
         printf("\033[0m");
+        }
     }
     | SAIDAL_P PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;35m");
         printf ("%s\n",$3);
         printf("\033[0m");
+        }
     }
     | SAIDA_P PARENTESEABERTO CARACTERES PARENTESEFECHADO { 
+        if(OK == 1) {
         printf("\033[1;35m");
         printf ("%s",$3);
         printf("\033[0m");
+        }
     }
     | SAIDA PARENTESEABERTO PARENTESEFECHADO {}
     | SAIDAL PARENTESEABERTO PARENTESEFECHADO {
+        if(OK == 1) {
         printf ("\n");
+        }
     }
     | ENTRADA PARENTESEABERTO NOMEVARIAVEL PARENTESEFECHADO {
+        if(OK == 1) {
         Variaveis *aux = buscar_variavel(lista, $3); 
         if(aux == NULL){
            printf("\033[1;31m");
@@ -153,55 +185,61 @@ comandos: SAIDAL PARENTESEABERTO expressoes PARENTESEFECHADO {
            //aux -> valor = value_string;
            aux -> valor = value;
        }
+        }
     }
     | VAR NOMEVARIAVEL {
+        if(OK == 1) {
         Variaveis *aux = buscar_variavel(lista, $2);
-       if(aux == NULL){
-           lista = inserir_nova_variavel(lista, $2);   
-       } else {
-           printf("\033[1;33m");
-           printf("Variável '%s' já declarada!\n", $2);
-           printf("\033[0m");
-       }
+        if(aux == NULL){
+            lista = inserir_nova_variavel(lista, $2);   
+        } else {
+            printf("\033[1;33m");
+            printf("Variável '%s' já declarada!\n", $2);
+            printf("\033[0m");
+        }
+        }
     }
     | NOMEVARIAVEL ATRIBUICAO expressoes {
-       Variaveis *aux = buscar_variavel(lista, $1); 
-       if(aux == NULL){
-           printf("\033[1;31m");
-           printf("Variavel '%s' não declarada!\n", $1);
-           printf("\033[0m");
-       } else {
-            aux -> valor = $3;
-       }
+        if(OK == 1) {
+        Variaveis *aux = buscar_variavel(lista, $1); 
+        if(aux == NULL){
+            printf("\033[1;31m");
+            printf("Variavel '%s' não declarada!\n", $1);
+            printf("\033[0m");
+        } else {
+                aux -> valor = $3;
+        }
+        }
     }
     | VAR NOMEVARIAVEL ATRIBUICAO expressoes {
+        if(OK == 1) {
         Variaveis *aux = buscar_variavel(lista, $2);
-       if(aux == NULL){
-           lista = inserir_nova_variavel(lista, $2);
-           Variaveis *aux2 = buscar_variavel(lista, $2); 
-           aux2 -> valor = $4;
-       } else {
-           printf("\033[1;33m");
-           printf("Variável '%s' já declarada!\n", $2);
-           printf("\033[0m");
-       }
+        if(aux == NULL){
+            lista = inserir_nova_variavel(lista, $2);
+            Variaveis *aux2 = buscar_variavel(lista, $2); 
+            aux2 -> valor = $4;
+        } else {
+            printf("\033[1;33m");
+            printf("Variável '%s' já declarada!\n", $2);
+            printf("\033[0m");
+        }
+        }
     }
     | SE PARENTESEABERTO teste PARENTESEFECHADO comandos %prec SEX			
 	| SE PARENTESEABERTO teste PARENTESEFECHADO comandosse SENAO comandos
-    | CHAVEABERTA cmdos_lst CHAVEFECHADA	{
+    | CHAVEABERTA lista_comandos CHAVEFECHADA	{
 							OK = 1;
 						}
-	;
-
+    ;
 comandosse:
-	 CHAVEABERTA cmdos_lst CHAVEFECHADA {
+	 CHAVEABERTA lista_comandos CHAVEFECHADA {
 			if(OK==1) OK=0;
 			else OK=1;
 			}
 	;
-cmdos_lst:
+lista_comandos:
 		comandos
-	|	cmdos_lst comandos
+	|	lista_comandos comandos
 	;
 
 expressoes: expressoes ELEVACAO expressoes {
@@ -228,10 +266,29 @@ expressoes: expressoes ELEVACAO expressoes {
 
 valor: DECIMAL {$$ = $1;};
 teste: expressoes MENOR expressoes {
-                    printf("Teste");
 					if ($1 < $3) OK = 1;
 					else OK = 0;
 					}
+    | expressoes MAIOR expressoes {
+                if ($1 > $3) OK = 1;
+                else OK = 0;
+                }
+    | expressoes MAIORIGUAL expressoes {
+                if ($1 >= $3) OK = 1;
+                else OK = 0;
+                }
+    | expressoes MENORIGUAL expressoes {
+                if ($1 <= $3) OK = 1;
+                else OK = 0;
+                }
+    | expressoes IGUAL expressoes {
+                if ($1 == $3) OK = 1;
+                else OK = 0;
+                }
+    | expressoes DIFERENTE expressoes {
+                if ($1 != $3) OK = 1;
+                else OK = 0;
+                }
 	;
 %%
 #include "lex.yy.c"
