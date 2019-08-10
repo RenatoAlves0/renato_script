@@ -39,6 +39,7 @@ void yyerror (char *s) {
 }
 %}
 %union {
+    int inteiro;
     double decimal;
     char caracteres[255];
 }
@@ -48,6 +49,9 @@ void yyerror (char *s) {
 %token <caracteres> CARACTERES
 %type <decimal> expressoes
 %type <decimal> valor
+%type <inteiro> operadores
+%token E
+%token OU
 %token IGUAL
 %token DIFERENTE
 %token MENORIGUAL
@@ -266,28 +270,68 @@ expressoes: expressoes ELEVACAO expressoes {
 
 valor: DECIMAL {$$ = $1;};
 operadores: expressoes MENOR expressoes {
-					if ($1 < $3) OK = 1;
-					else OK = 0;
+					if ($1 < $3) $$ = OK = 1;
+					else $$ = OK = 0;
+					}
+    | PARENTESEABERTO expressoes MENOR expressoes PARENTESEFECHADO {
+					if ($2 < $4) $$ = OK = 1;
+					else $$ = OK = 0;
 					}
     | expressoes MAIOR expressoes {
-                if ($1 > $3) OK = 1;
-                else OK = 0;
+                if ($1 > $3) $$ = OK = 1;
+                else $$ = OK = 0;
+                }
+    | PARENTESEABERTO expressoes MAIOR expressoes PARENTESEFECHADO {
+                if ($2 > $4) $$ = OK = 1;
+                else $$ = OK = 0;
                 }
     | expressoes MAIORIGUAL expressoes {
-                if ($1 >= $3) OK = 1;
-                else OK = 0;
+                if ($1 >= $3) $$ = OK = 1;
+                else $$ = OK = 0;
+                }
+    | PARENTESEABERTO expressoes MAIORIGUAL expressoes PARENTESEFECHADO {
+                if ($2 >= $4) $$ = OK = 1;
+                else $$ = OK = 0;
                 }
     | expressoes MENORIGUAL expressoes {
-                if ($1 <= $3) OK = 1;
-                else OK = 0;
+                if ($1 <= $3) $$ = OK = 1;
+                else $$ = OK = 0;
+                }
+    | PARENTESEABERTO expressoes MENORIGUAL expressoes PARENTESEFECHADO {
+                if ($2 <= $4) $$ = OK = 1;
+                else $$ = OK = 0;
                 }
     | expressoes IGUAL expressoes {
-                if ($1 == $3) OK = 1;
-                else OK = 0;
+                if ($1 == $3) $$ = OK = 1;
+                else $$ = OK = 0;
+                }
+    | PARENTESEABERTO expressoes IGUAL expressoes PARENTESEFECHADO {
+                if ($2 == $4) $$ = OK = 1;
+                else $$ = OK = 0;
                 }
     | expressoes DIFERENTE expressoes {
-                if ($1 != $3) OK = 1;
-                else OK = 0;
+                if ($1 != $3) $$ = OK = 1;
+                else $$ = OK = 0;
+                }
+    | PARENTESEABERTO expressoes DIFERENTE expressoes PARENTESEFECHADO {
+                if ($2 != $4) $$ = OK = 1;
+                else $$ = OK = 0;
+                }
+    | operadores E operadores {
+                if ($1 == 1 && $3 == 1) $$ = OK = 1;
+                else $$ = OK = 0;
+                }
+    | PARENTESEABERTO operadores E operadores PARENTESEFECHADO {
+                if ($2 == 1 && $4 == 1) $$ = OK = 1;
+                else $$ = OK = 0;
+                }
+    | operadores OU operadores {
+                if ($1 == 0 && $3 == 0) $$ = OK = 0;
+                else $$ = OK = 1;
+                }
+    | PARENTESEABERTO operadores OU operadores PARENTESEFECHADO {
+                if ($2 == 0 && $4 == 0) $$ = OK = 0;
+                else $$ = OK = 1;
                 }
 	;
 %%

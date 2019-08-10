@@ -103,6 +103,8 @@ DESCARTAR ({ESPACO}|{TABULACAO}|{QUEBRALINHA})
 {SAIDA} {return SAIDA;}
 {FIM} {return FIM;}
 {VAR} {return VAR;}
+{E} {return E;}
+{OU} {return OU;}
 {NOMEVARIAVEL} {
     strcpy(yylval.caracteres, yytext);
     return NOMEVARIAVEL;
